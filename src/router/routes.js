@@ -4,7 +4,9 @@ const routes = [
     path: '/',
     component: () => import('layouts/MainLayout.vue'),
     children: [
-      { path: '', component: () => import('pages/IndexPage.vue') }
+      { path: '', component: () => import('pages/IndexPage.vue') },
+      { path: 'pre-start-form', component: () => import('pages/PreStartForm.vue') },
+      { path: 'traffic-form', component: () => import('pages/TrafficForm.vue') }
     ]
   },
 
