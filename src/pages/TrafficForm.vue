@@ -3,7 +3,7 @@
     <div id="container">
         <h1>TRAFFIC MANAGEMENT</h1>
 
-        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md"/>
           <div class="form-section">
             <div class="row">
               <div class="col-4">
