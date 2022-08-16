@@ -3,7 +3,7 @@
     <div id="container">
         <h1>TRAFFIC MANAGEMENT</h1>
 
-        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md"/>
+        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
           <div class="form-section">
             <div class="row">
               <div class="col-4">
@@ -56,7 +56,6 @@
                 <q-btn-toggle v-model="memorandumOfAuthorisationSighted" class="my-custom-toggle" no-caps unelevated toggle-color="primary"
                 push glossy :options="[ {label: 'YES', value: 'one'}, {label: 'NO', value: 'two'}]"/>
             </div>
-          </div>
 
             <!--Part 2-->
 
