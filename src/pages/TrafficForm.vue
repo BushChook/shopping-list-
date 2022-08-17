@@ -3,7 +3,7 @@
     <div id="container">
         <h1>TRAFFIC MANAGEMENT</h1>
 
-        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+        <q-form class="q-gutter-md">
           <div class="form-section">
             <div class="row">
               <div class="col-4">
@@ -192,7 +192,7 @@
               </div>
             </div>
             <div id="hazards">
-             <q-input v-model="additionalHazards" filled type="textarea" input-style="min-height:10em;" label="Addional Hazards"></q-input>
+             <q-input v-model="additionalHazards" filled type="textarea" input-style="min-height:10em;" label="Additional Hazards"></q-input>
             </div>
 
             <!--Part 4-->
@@ -353,479 +353,469 @@ export default defineComponent({
   name: 'TrafficForm',
 
   data() {
-          return {
-            jobNumber: "",
-            address: "",
+    return {
+      jobNumber: "",
+      address: "",
 
-            //Part 1
+      //Part 1
 
-            tmpOptions: [],
-            trafficManagementContractorBeingUtilised: "",
-            jsaInUse: "",
-            contractorSiteSpecificTmpInPlace: "",
-            memorandumOfAuthorisationSighted:"",
+      tmpOptions: [],
+      trafficManagementContractorBeingUtilised: "",
+      jsaInUse: "",
+      contractorSiteSpecificTmpInPlace: "",
+      memorandumOfAuthorisationSighted:"",
 
-            //Part 2
-            roadType:"",
-            roadType1:[
-              {value: 'Local', label: 'Local'},
-              {value: 'Collector', label: 'Collector'},
-              {value: 'Secondary', label: 'Secondary'},
-              {value: 'Arterial', label: 'Arterial'},
-              {value: 'Freeway', label: 'Freeway'}
-            ],
+      //Part 2
+      roadType:"",
+      roadType1:[
+        {value: 'Local', label: 'Local'},
+        {value: 'Collector', label: 'Collector'},
+        {value: 'Secondary', label: 'Secondary'},
+        {value: 'Arterial', label: 'Arterial'},
+        {value: 'Freeway', label: 'Freeway'}
+      ],
 
-            trafficSpeed:"",
-            trafficSpeed1:[
-              {label: '40', value: '40'},
-              {label: '50', value: '50'},
-              {label: '60', value: '60'},
-              {label: '70', value: '70'},
-              {label: '80', value: '80'},
-              {label: '90', value: '90'},
-              {label: '100', value: '100'},
-              {label: '110', value: '110'}
-            ],
+      trafficSpeed:"",
+      trafficSpeed1:[
+        {label: '40', value: '40'},
+        {label: '50', value: '50'},
+        {label: '60', value: '60'},
+        {label: '70', value: '70'},
+        {label: '80', value: '80'},
+        {label: '90', value: '90'},
+        {label: '100', value: '100'},
+        {label: '110', value: '110'}
+      ],
 
-            clearenceBetweenWorkers:"",
-            clearenceBetweenWorkers1:  [
-              {label: '<1.2m', value: '<1.2m'},
-              {label: '1.2 - 3m', value: '1.2 - 3m'},
-              {label: '3 - 9m', value: '3 - 9m'},
-              {label: '>9m', value: '>9m'}
-            ],
+      clearenceBetweenWorkers:"",
+      clearenceBetweenWorkers1:  [
+        {label: '<1.2m', value: '<1.2m'},
+        {label: '1.2 - 3m', value: '1.2 - 3m'},
+        {label: '3 - 9m', value: '3 - 9m'},
+        {label: '>9m', value: '>9m'}
+      ],
 
-            taskDuration:"",
-            taskDuration1:  [
-            {value: '<5 mins', label: '<5 mins'},
-            {value: '<20 mins', label: '<20 mins'},
-            {value: 'Short Term Work', label: 'Short Term Work'},
-            {value: 'Long Term Work', label: 'Long Term Work'}
-            ],
+      taskDuration:"",
+      taskDuration1:  [
+      {value: '<5 mins', label: '<5 mins'},
+      {value: '<20 mins', label: '<20 mins'},
+      {value: 'Short Term Work', label: 'Short Term Work'},
+      {value: 'Long Term Work', label: 'Long Term Work'}
+      ],
 
-            siteRiskRating: 0,
-            trafficSliderSafetyLabels: [
-            { value: 3, label: 'Low' },
-            { value: 6, label: 'Medium' },
-            { value: 9, label: 'High' },
-            { value: 12, label: 'Very High' }
-            ],
+      siteRiskRating: 0,
+      trafficSliderSafetyLabels: [
+      { value: 3, label: 'Low' },
+      { value: 6, label: 'Medium' },
+      { value: 9, label: 'High' },
+      { value: 12, label: 'Very High' }
+      ],
 
-            // Part 3
-            trafficVolume:"",
-            trafficVolume1:[
-            {label: 'Low', value: 'Low'},
-            {label: 'Medium', value: 'Medium'},
-            {label: 'High', value: 'High'},
-            {label: 'Very High', value: 'Very High'}
-            ],
+      // Part 3
+      trafficVolume:"",
+      trafficVolume1:[
+      {label: 'Low', value: 'Low'},
+      {label: 'Medium', value: 'Medium'},
+      {label: 'High', value: 'High'},
+      {label: 'Very High', value: 'Very High'}
+      ],
 
-            roughOrUnsealedSurfaces: "",
-            pedestriansThroughTheWorkSite:"",
-            siteDistance:"",
+      roughOrUnsealedSurfaces: "",
+      pedestriansThroughTheWorkSite:"",
+      siteDistance:"",
 
-            //Part 4
-            reductionOfSpeed:"",
-            trafficControllersRequired: "",
-            roadClosure:"",
-            tmpPlanRequired:"",
-            moaRequired:"",
-            pedestrianTmpRequired:"",
-            tmpRequireModification:"",
-            trafficManagementPlan: "001",
+      //Part 4
+      reductionOfSpeed:"",
+      trafficControllersRequired: "",
+      roadClosure:"",
+      tmpPlanRequired:"",
+      moaRequired:"",
+      pedestrianTmpRequired:"",
+      tmpRequireModification:"",
+      trafficManagementPlan: "001",
 
-            //Part 5
-            crewLeader:'',
+      //Part 5
+      crewLeader:'',
+    };
+  },
 
+  methods:{
+    getColorForSlider: function () {
+      if(this.siteRiskRating <=5) {
+        return 'green';
+      }
+      else if (this.siteRiskRating <=8){
+      return 'yellow';
+      }
+      else if(this.siteRiskRating <=11){
+      return 'orange';
+      }
+      else if(this.siteRiskRating >=12){
+      return 'red';
+      }
+    },
 
-          };
-        },
+    getDanger: function(){
 
+      if(!this.trafficSpeed || !this.roadType || !this.clearenceBetweenWorkers)
+      {return;}
 
-
-        methods:{
-          getColorForSlider: function () {
-            if(this.siteRiskRating <=5) {
-              return 'green';
-            }
-            else if (this.siteRiskRating <=8){
-            return 'yellow';
-            }
-            else if(this.siteRiskRating <=11){
-            return 'orange';
-            }
-            else if(this.siteRiskRating >=12){
-            return 'red';
-            }
+      const lookupTable = {
+        40: {
+          "Local": {
+            '<1.2m': 4,
+            '1.2 - 3m': 3,
+            '3 - 9m': 2,
+            '>9m': 2,
           },
-
-          getDanger: function(){
-
-            if(!this.trafficSpeed || !this.roadType || !this.clearenceBetweenWorkers)
-            {return;}
-
-            const lookupTable = {
-              40: {
-                "Local": {
-                  '<1.2m': 4,
-                  '1.2 - 3m': 3,
-                  '3 - 9m': 2,
-                  '>9m': 2,
-                },
-                "Collector": {
-                  '<1.2m': 7,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Secondary":{
-                  '<1.2m': 7,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Arterial":{
-                  '<1.2m': 7,
-                  '1.2 - 3m': 6,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Freeway": {
-                  '<1.2m': 9,
-                  '1.2 - 3m': 6,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                }
-              },
-              50: {
-                "Local": {
-                  '<1.2m': 5,
-                  '1.2 - 3m': 4,
-                  '3 - 9m': 2,
-                  '>9m': 1,
-                },
-                "Collector": {
-                  '<1.2m': 8,
-                  '1.2 - 3m': 4,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Secondary":{
-                  '<1.2m': 8,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Arterial":{
-                  '<1.2m': 9,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 6,
-                  '>9m': 2,
-                },
-                "Freeway": {
-                  '<1.2m': 10,
-                  '1.2 - 3m': 8,
-                  '3 - 9m': 6,
-                  '>9m': 2,
-                }
-              },
-              60: {
-                "Local": {
-                  '<1.2m': 6,
-                  '1.2 - 3m': 4,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Collector": {
-                  '<1.2m': 8,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 4,
-                  '>9m': 2,
-                },
-                "Secondary":{
-                  '<1.2m': 11,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 4,
-                  '>9m': 3,
-                },
-                "Arterial":{
-                  '<1.2m': 11,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 4,
-                  '>9m': 3,
-                },
-                "Freeway": {
-                  '<1.2m': 12,
-                  '1.2 - 3m': 10,
-                  '3 - 9m': 6,
-                  '>9m': 3,
-                }
-              },
-              70: {
-                "Local": {
-                  '<1.2m': 6,
-                  '1.2 - 3m': 4,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Collector": {
-                  '<1.2m': 8,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 4,
-                  '>9m': 2,
-                },
-                "Secondary":{
-                  '<1.2m': 11,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 4,
-                  '>9m': 3,
-                },
-                "Arterial":{
-                  '<1.2m': 11,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 4,
-                  '>9m': 3,
-                },
-                "Freeway": {
-                  '<1.2m': 12,
-                  '1.2 - 3m': 10,
-                  '3 - 9m': 6,
-                  '>9m': 3,
-                }
-              },
-              80: {
-                "Local": {
-                  '<1.2m': 8,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Collector": {
-                  '<1.2m': 11,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 4,
-                  '>9m': 2,
-                },
-                "Secondary":{
-                  '<1.2m': 12,
-                  '1.2 - 3m': 10,
-                  '3 - 9m': 6,
-                  '>9m': 2,
-                },
-                "Arterial":{
-                  '<1.2m': 13,
-                  '1.2 - 3m': 10,
-                  '3 - 9m': 8,
-                  '>9m': 6,
-                },
-                "Freeway": {
-                  '<1.2m': 13,
-                  '1.2 - 3m': 11,
-                  '3 - 9m': 9,
-                  '>9m': 6,
-                }
-              },
-              90: {
-                "Local": {
-                  '<1.2m': 8,
-                  '1.2 - 3m': 5,
-                  '3 - 9m': 3,
-                  '>9m': 2,
-                },
-                "Collector": {
-                  '<1.2m': 11,
-                  '1.2 - 3m': 7,
-                  '3 - 9m': 4,
-                  '>9m': 2,
-                },
-                "Secondary":{
-                  '<1.2m': 12,
-                  '1.2 - 3m': 10,
-                  '3 - 9m': 6,
-                  '>9m': 2,
-                },
-                "Arterial":{
-                  '<1.2m': 13,
-                  '1.2 - 3m': 10,
-                  '3 - 9m': 8,
-                  '>9m': 6,
-                },
-                "Freeway": {
-                  '<1.2m': 13,
-                  '1.2 - 3m': 11,
-                  '3 - 9m': 9,
-                  '>9m': 6,
-                }
-              },
-              100: {
-                "Local": {
-                  '<1.2m': 12,
-                  '1.2 - 3m':9,
-                  '3 - 9m': 7,
-                  '>9m': 5,
-                },
-                "Collector": {
-                  '<1.2m': 13,
-                  '1.2 - 3m': 11,
-                  '3 - 9m': 9,
-                  '>9m': 6,
-                },
-                "Secondary":{
-                  '<1.2m': 13,
-                  '1.2 - 3m':11,
-                  '3 - 9m': 9,
-                  '>9m': 7,
-                },
-                "Arterial":{
-                  '<1.2m': 14,
-                  '1.2 - 3m': 12,
-                  '3 - 9m': 10,
-                  '>9m': 7,
-                },
-                "Freeway": {
-                  '<1.2m': 14,
-                  '1.2 - 3m': 13,
-                  '3 - 9m': 12,
-                  '>9m': 8,
-                }
-              },
-              110: {
-                "Local": {
-                  '<1.2m': 12,
-                  '1.2 - 3m':9,
-                  '3 - 9m': 7,
-                  '>9m': 5,
-                },
-                "Collector": {
-                  '<1.2m': 13,
-                  '1.2 - 3m': 11,
-                  '3 - 9m': 9,
-                  '>9m': 6,
-                },
-                "Secondary":{
-                  '<1.2m': 13,
-                  '1.2 - 3m':11,
-                  '3 - 9m': 9,
-                  '>9m': 7,
-                },
-                "Arterial":{
-                  '<1.2m': 14,
-                  '1.2 - 3m': 12,
-                  '3 - 9m': 10,
-                  '>9m': 7,
-                },
-                "Freeway": {
-                  '<1.2m': 14,
-                  '1.2 - 3m': 13,
-                  '3 - 9m': 12,
-                  '>9m': 8,
-                }
-              },
-            }
-
-            this.siteRiskRating = lookupTable[this.trafficSpeed][this.roadType][this.clearenceBetweenWorkers];
+          "Collector": {
+            '<1.2m': 7,
+            '1.2 - 3m': 5,
+            '3 - 9m': 3,
+            '>9m': 2,
           },
-
-          saveToLocalStorage: function()
-          {
-            // Choose a list of fields to save.
-            const fieldsToSave = {
-
-              //part 1
-              jobNumber: this.jobNumber,
-              address: this.address,
-              trafficManagementPlan: this.trafficManagementPlan,
-              tmpOptions: this.tmpOptions,
-              trafficManagementContractorBeingUtilised: this.trafficManagementContractorBeingUtilised,
-              jsaInUse: this.jsaInUse,
-              contractorSiteSpecificTmpInPlace: this.contractorSiteSpecificTmpInPlace,
-              memorandumOfAuthorisationSighted: this.memorandumOfAuthorisationSighted,
-
-              //part 3
-              trafficVolume: this.trafficVolume,
-              trafficVolume1: this.trafficVolume1,
-              roughOrUnsealedSurfaces: this.roughOrUnsealedSurfaces,
-              pedestriansThroughTheWorkSite: this.pedestriansThroughTheWorkSite,
-              siteDistance: this.siteDistance,
-
-              //part 4
-              reductionOfSpeed:this.reductionOfSpeed,
-              trafficControllersRequired: this.trafficControllersRequired,
-              roadClosure: this.roadClosure,
-              tmpPlanRequired: this.tmpPlanRequired,
-              moaRequired: this.moaRequired,
-              pedestrianTmpRequired: this.pedestrianTmpRequired,
-              tmpRequireModification: this.tmpRequireModification,
-
-              //part 5
-              crewLeader: this.crewLeader,
-              // etc...
-            };
-
-            // We need to convert the data to a JSON 'string' in order to save it into localStorage.
-            const fieldsToSaveAsTrafficString = JSON.stringify(fieldsToSave);
-
-            // Save it to local storage with key "savedForm".
-            window.localStorage.setItem('savedForm', fieldsToSaveAsTrafficString);
+          "Secondary":{
+            '<1.2m': 7,
+            '1.2 - 3m': 5,
+            '3 - 9m': 3,
+            '>9m': 2,
           },
-
-          loadFromLocalStorage: function()
-          {
-            // Load the form from Local Storage (this will be a string at the moment).
-            const savedFormAsString = window.localStorage.getItem('savedForm');
-            const savedJobDetailsFormAsString = window.localStorage.getItem('savedForm-jobDetails');
-
-            // Parse that string into a JSON obect.
-            const savedFormAsObject = JSON.parse(savedFormAsString);
-            const savedJobDetailsFormAsObject = JSON.parse(savedJobDetailsFormAsString);
-            // This is a bit of a shortcut because I'm lazy.
-            // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
-            // But you could just set each field manually.
-            // e.g.
-            // this.oermitNumbers = savedFormAsObject.permitNumbers;
-            // etc
-            Object.assign(this, savedFormAsObject);
-            Object.assign(this, savedJobDetailsFormAsObject);
+          "Arterial":{
+            '<1.2m': 7,
+            '1.2 - 3m': 6,
+            '3 - 9m': 3,
+            '>9m': 2,
           },
-        },
-
-        // This function is run before the HTML has been rendered.
-        created() {
-          // Setup a function to "pad" the numbers.
-          const pad = function(num, size) {
-            num = num.toString();
-            while (num.length < size) num = "0" + num;
-            return num;
+          "Freeway": {
+            '<1.2m': 9,
+            '1.2 - 3m': 6,
+            '3 - 9m': 3,
+            '>9m': 2,
           }
-
-          // Loop through numbers 0 to 30.
-          for(i = 1; i < 30; i++) {
-            // Pad the number of 'i'.
-            const paddedNumber = pad(i, 3);
-
-            // Add this padded number to our list of TMP options.
-            this.tmpOptions.push(paddedNumber)
-          }
-
-          {
-          // Get a reference to the title element using a CSS selector.
-          const titleElement = document.querySelector('title');
-
-          // Get the current date as an ISO string.
-          // TODO: You probably want to find a way to convert this to YYYY-MM-DD format.
-          const currentDate = new Date().toISOString();
-
-          // Set the text content of the title element.
-          titleElement.innerText = `Traffic Management - ${currentDate}`;
-        }
         },
-})
+        50: {
+          "Local": {
+            '<1.2m': 5,
+            '1.2 - 3m': 4,
+            '3 - 9m': 2,
+            '>9m': 1,
+          },
+          "Collector": {
+            '<1.2m': 8,
+            '1.2 - 3m': 4,
+            '3 - 9m': 3,
+            '>9m': 2,
+          },
+          "Secondary":{
+            '<1.2m': 8,
+            '1.2 - 3m': 5,
+            '3 - 9m': 3,
+            '>9m': 2,
+          },
+          "Arterial":{
+            '<1.2m': 9,
+            '1.2 - 3m': 7,
+            '3 - 9m': 6,
+            '>9m': 2,
+          },
+          "Freeway": {
+            '<1.2m': 10,
+            '1.2 - 3m': 8,
+            '3 - 9m': 6,
+            '>9m': 2,
+          }
+        },
+        60: {
+          "Local": {
+            '<1.2m': 6,
+            '1.2 - 3m': 4,
+            '3 - 9m': 3,
+            '>9m': 2,
+          },
+          "Collector": {
+            '<1.2m': 8,
+            '1.2 - 3m': 5,
+            '3 - 9m': 4,
+            '>9m': 2,
+          },
+          "Secondary":{
+            '<1.2m': 11,
+            '1.2 - 3m': 7,
+            '3 - 9m': 4,
+            '>9m': 3,
+          },
+          "Arterial":{
+            '<1.2m': 11,
+            '1.2 - 3m': 7,
+            '3 - 9m': 4,
+            '>9m': 3,
+          },
+          "Freeway": {
+            '<1.2m': 12,
+            '1.2 - 3m': 10,
+            '3 - 9m': 6,
+            '>9m': 3,
+          }
+        },
+        70: {
+          "Local": {
+            '<1.2m': 6,
+            '1.2 - 3m': 4,
+            '3 - 9m': 3,
+            '>9m': 2,
+          },
+          "Collector": {
+            '<1.2m': 8,
+            '1.2 - 3m': 5,
+            '3 - 9m': 4,
+            '>9m': 2,
+          },
+          "Secondary":{
+            '<1.2m': 11,
+            '1.2 - 3m': 7,
+            '3 - 9m': 4,
+            '>9m': 3,
+          },
+          "Arterial":{
+            '<1.2m': 11,
+            '1.2 - 3m': 7,
+            '3 - 9m': 4,
+            '>9m': 3,
+          },
+          "Freeway": {
+            '<1.2m': 12,
+            '1.2 - 3m': 10,
+            '3 - 9m': 6,
+            '>9m': 3,
+          }
+        },
+        80: {
+          "Local": {
+            '<1.2m': 8,
+            '1.2 - 3m': 5,
+            '3 - 9m': 3,
+            '>9m': 2,
+          },
+          "Collector": {
+            '<1.2m': 11,
+            '1.2 - 3m': 7,
+            '3 - 9m': 4,
+            '>9m': 2,
+          },
+          "Secondary":{
+            '<1.2m': 12,
+            '1.2 - 3m': 10,
+            '3 - 9m': 6,
+            '>9m': 2,
+          },
+          "Arterial":{
+            '<1.2m': 13,
+            '1.2 - 3m': 10,
+            '3 - 9m': 8,
+            '>9m': 6,
+          },
+          "Freeway": {
+            '<1.2m': 13,
+            '1.2 - 3m': 11,
+            '3 - 9m': 9,
+            '>9m': 6,
+          }
+        },
+        90: {
+          "Local": {
+            '<1.2m': 8,
+            '1.2 - 3m': 5,
+            '3 - 9m': 3,
+            '>9m': 2,
+          },
+          "Collector": {
+            '<1.2m': 11,
+            '1.2 - 3m': 7,
+            '3 - 9m': 4,
+            '>9m': 2,
+          },
+          "Secondary":{
+            '<1.2m': 12,
+            '1.2 - 3m': 10,
+            '3 - 9m': 6,
+            '>9m': 2,
+          },
+          "Arterial":{
+            '<1.2m': 13,
+            '1.2 - 3m': 10,
+            '3 - 9m': 8,
+            '>9m': 6,
+          },
+          "Freeway": {
+            '<1.2m': 13,
+            '1.2 - 3m': 11,
+            '3 - 9m': 9,
+            '>9m': 6,
+          }
+        },
+        100: {
+          "Local": {
+            '<1.2m': 12,
+            '1.2 - 3m':9,
+            '3 - 9m': 7,
+            '>9m': 5,
+          },
+          "Collector": {
+            '<1.2m': 13,
+            '1.2 - 3m': 11,
+            '3 - 9m': 9,
+            '>9m': 6,
+          },
+          "Secondary":{
+            '<1.2m': 13,
+            '1.2 - 3m':11,
+            '3 - 9m': 9,
+            '>9m': 7,
+          },
+          "Arterial":{
+            '<1.2m': 14,
+            '1.2 - 3m': 12,
+            '3 - 9m': 10,
+            '>9m': 7,
+          },
+          "Freeway": {
+            '<1.2m': 14,
+            '1.2 - 3m': 13,
+            '3 - 9m': 12,
+            '>9m': 8,
+          }
+        },
+        110: {
+          "Local": {
+            '<1.2m': 12,
+            '1.2 - 3m':9,
+            '3 - 9m': 7,
+            '>9m': 5,
+          },
+          "Collector": {
+            '<1.2m': 13,
+            '1.2 - 3m': 11,
+            '3 - 9m': 9,
+            '>9m': 6,
+          },
+          "Secondary":{
+            '<1.2m': 13,
+            '1.2 - 3m':11,
+            '3 - 9m': 9,
+            '>9m': 7,
+          },
+          "Arterial":{
+            '<1.2m': 14,
+            '1.2 - 3m': 12,
+            '3 - 9m': 10,
+            '>9m': 7,
+          },
+          "Freeway": {
+            '<1.2m': 14,
+            '1.2 - 3m': 13,
+            '3 - 9m': 12,
+            '>9m': 8,
+          }
+        },
+      }
 
+      this.siteRiskRating = lookupTable[this.trafficSpeed][this.roadType][this.clearenceBetweenWorkers];
+    },
 
+    saveToLocalStorage: function()
+    {
+      // Choose a list of fields to save.
+      const fieldsToSave = {
+
+        //part 1
+        jobNumber: this.jobNumber,
+        address: this.address,
+        trafficManagementPlan: this.trafficManagementPlan,
+        tmpOptions: this.tmpOptions,
+        trafficManagementContractorBeingUtilised: this.trafficManagementContractorBeingUtilised,
+        jsaInUse: this.jsaInUse,
+        contractorSiteSpecificTmpInPlace: this.contractorSiteSpecificTmpInPlace,
+        memorandumOfAuthorisationSighted: this.memorandumOfAuthorisationSighted,
+
+        //part 3
+        trafficVolume: this.trafficVolume,
+        trafficVolume1: this.trafficVolume1,
+        roughOrUnsealedSurfaces: this.roughOrUnsealedSurfaces,
+        pedestriansThroughTheWorkSite: this.pedestriansThroughTheWorkSite,
+        siteDistance: this.siteDistance,
+
+        //part 4
+        reductionOfSpeed:this.reductionOfSpeed,
+        trafficControllersRequired: this.trafficControllersRequired,
+        roadClosure: this.roadClosure,
+        tmpPlanRequired: this.tmpPlanRequired,
+        moaRequired: this.moaRequired,
+        pedestrianTmpRequired: this.pedestrianTmpRequired,
+        tmpRequireModification: this.tmpRequireModification,
+
+        //part 5
+        crewLeader: this.crewLeader,
+        // etc...
+      };
+
+      // We need to convert the data to a JSON 'string' in order to save it into localStorage.
+      const fieldsToSaveAsTrafficString = JSON.stringify(fieldsToSave);
+
+      // Save it to local storage with key "savedForm".
+      window.localStorage.setItem('savedForm', fieldsToSaveAsTrafficString);
+    },
+
+    loadFromLocalStorage: function()
+    {
+      // Load the form from Local Storage (this will be a string at the moment).
+      const savedFormAsString = window.localStorage.getItem('savedForm');
+      const savedJobDetailsFormAsString = window.localStorage.getItem('savedForm-jobDetails');
+
+      // Parse that string into a JSON obect.
+      const savedFormAsObject = JSON.parse(savedFormAsString);
+      const savedJobDetailsFormAsObject = JSON.parse(savedJobDetailsFormAsString);
+      // This is a bit of a shortcut because I'm lazy.
+      // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
+      // But you could just set each field manually.
+      // e.g.
+      // this.oermitNumbers = savedFormAsObject.permitNumbers;
+      // etc
+      Object.assign(this, savedFormAsObject);
+      Object.assign(this, savedJobDetailsFormAsObject);
+    },
+  },
+
+  // This function is run before the HTML has been rendered.
+  created() {
+    // Setup a function to "pad" the numbers.
+    const pad = function(num, size) {
+      num = num.toString();
+      while (num.length < size) num = "0" + num;
+      return num;
+    }
+
+    // Loop through numbers 0 to 30.
+    for(let i = 1; i < 30; i++) {
+      // Pad the number of 'i'.
+      const paddedNumber = pad(i, 3);
+
+      // Add this padded number to our list of TMP options.
+      this.tmpOptions.push(paddedNumber)
+    }
+    // Get a reference to the title element using a CSS selector.
+    const titleElement = document.querySelector('title');
+
+    // Get the current date as an ISO string.
+    // TODO: You probably want to find a way to convert this to YYYY-MM-DD format.
+    const currentDate = new Date().toISOString();
+
+    // Set the text content of the title element.
+    titleElement.innerText = `Traffic Management - ${currentDate}`;
+  }
+});
 </script>
 
 <style>
-
     body {
       padding: 0px 10px 0px 10px;
     }
@@ -856,4 +846,4 @@ export default defineComponent({
         visibility: hidden;
       }
     }
-  </style>
+</style>
