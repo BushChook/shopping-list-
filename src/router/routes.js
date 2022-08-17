@@ -7,7 +7,7 @@ const routes = [
       { path: '', component: () => import('pages/IndexPage.vue') },
       { path: 'pre-start-form', component: () => import('pages/PreStartForm.vue') },
       { path: 'traffic-form', component: () => import('pages/TrafficForm.vue') },
-      // { path: 'PlantChecklist-form', component: () => import('pages/PlantChecklist.vue') }
+      { path: 'plant-checklist-form', component: () => import('pages/PlantChecklist.vue') }
     ]
   },
 

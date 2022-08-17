@@ -27,7 +27,7 @@
       <q-list>
         <q-item clickable tag="a" to="/pre-start-form">
           <q-item-section avatar>
-            <q-icon :name="icon" />
+            <q-icon name="list" />
           </q-item-section>
 
           <q-item-section>
@@ -38,12 +38,23 @@
 
         <q-item clickable tag="a" to="/traffic-form">
           <q-item-section avatar>
-            <q-icon :name="icon" />
+            <q-icon name="list" />
           </q-item-section>
 
           <q-item-section>
             <q-item-label>Traffic Form</q-item-label>
             <q-item-label caption>The Traffic Form</q-item-label>
+          </q-item-section>
+        </q-item>
+
+        <q-item clickable tag="a" to="/plant-checklist-form">
+          <q-item-section avatar>
+            <q-icon name="list" />
+          </q-item-section>
+
+          <q-item-section>
+            <q-item-label>Plant Checklist Form</q-item-label>
+            <q-item-label caption>Plant Checklist Form</q-item-label>
           </q-item-section>
         </q-item>
       </q-list>
