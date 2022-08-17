@@ -475,3 +475,447 @@
       </div>
   </q-page>
 </template>
+
+<script>
+import { defineComponent } from 'vue'
+
+export default defineComponent({
+  name: 'PlantChecklist',
+    data() {
+          return {
+            // Part 1
+            plantType: {
+              "Fork lift": false,
+              "Hi AB Crane": false,
+              Backhoe: false,
+              Excavator: false,
+              "Vibrating Plate/Wacker": false,
+              "Skid Steer Loader": false,
+              Compressor: false,
+              "Truck / Trailer": false,
+              Generator: false,
+              "Golf Buggy": false,
+              ATV: false,
+            },
+            Other: "",
+
+            // Part 2
+            startDate: "",
+            make: "",
+            model: "",
+            siteLocation: "",
+            registration: "",
+
+            //Part 3
+            fluids: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            visibility: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            cabin: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            wheels: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            guards: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            warningDevices: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            loadCart: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            brakes: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            body: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            controls: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            hydraulics: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            engineExhaust: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            fireExtinguisher: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            otherRequirement: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            tyres: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            operation: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            jib: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            safetyChains: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            shackleAndSwivel: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            decals: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            rops: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            attachPoints1: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            tracks: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            workingLoads: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            attachPoints2: {
+              monday: "",
+              tuesday: "",
+              wednesday: "",
+              thursday: "",
+              friday: "",
+              saturday: "",
+              sunday: "",
+            },
+
+            // Part 4
+
+            faultRectified: false,
+            plantUnsafeToUse: false,
+
+            //Part 5
+            crewLeader1:'',
+
+
+          };
+
+
+        },
+
+        methods: {
+
+          getChecklistColor: function(value)
+          {
+            if(value === true) {
+              return 'positive';
+            }
+
+            if(value === false) {
+              return 'negative'
+            }
+
+            return 'default'
+          },
+
+          getChecklistBackgroundColor: function(value)
+          {
+            if(value === true) {
+              return 'bg-green-1'
+            }
+
+            if(value === false) {
+              return 'bg-red-2'
+            }
+
+            return 'bg-default'
+          },
+
+
+
+
+          saveToLocalStorage: function()
+          {
+            // Choose a list of fields to save.
+            const fieldsToSave = {
+              startDate: this.startDate,
+              plantType: this.plantType,
+              make: this.make,
+              model: this.model,
+              siteLocation: this.siteLocation,
+              registration: this.registration,
+
+              fluids: this.fluids,
+              visibility: this.visibility,
+              cabin: this.cabin,
+              wheels: this.wheels,
+              guards: this.guards,
+              warningDevices: this.warningDevices,
+              loadCart: this.loadCart,
+              brakes: this.brakes,
+              body: this.body,
+              controls: this.controls,
+              hydraulics: this.hydraulics,
+              engineExhaust: this.engineExhaust,
+              fireExtinguisher: this.fireExtinguisher,
+              other: this.other,
+
+              tyres: this.tyres,
+              operation: this.operation,
+              jib: this.jib,
+              safetyChains: this.safetyChains,
+              shackleAndSwivel: this.shackleAndSwivel,
+
+              decals: this.decals,
+              rops: this.rops,
+              attachPoints1: this.attachPoints1,
+
+              tracks: this.tracks,
+              workingLoads: this.workingLoads,
+              attachPoints2: this.attachPoints2,
+
+              crewLeader1: this.crewLeader1,
+              // etc...
+            };
+
+            // We need to convert the data to a JSON 'string' in order to save it into localStorage.
+            const fieldsToSaveAsString = JSON.stringify(fieldsToSave);
+
+            // Save it to local storage with key "savedForm".
+            window.localStorage.setItem('savedForm-PlantChecklist', fieldsToSaveAsString);
+          },
+
+          loadFromLocalStorage: function()
+          {
+            // Load the form from Local Storage (this will be a string at the moment).
+            const savedFormAsString = window.localStorage.getItem('savedForm-PlantChecklist');
+
+            // Parse that string into a JSON obect.
+            const savedFormAsObject = JSON.parse(savedFormAsString);
+
+            // This is a bit of a shortcut because I'm lazy.
+            // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
+            // But you could just set each field manually.
+            // e.g.
+            // this.oermitNumbers = savedFormAsObject.permitNumbers;
+            // etc
+            Object.assign(this, savedFormAsObject);
+          }
+        },
+
+        created() {
+          // Get a reference to the title element using a CSS selector.
+          const titleElement = document.querySelector('title');
+
+          // Get the current date as an ISO string.
+          // TODO: You probably want to find a way to convert this to YYYY-MM-DD format.
+          const currentDate = new Date().toISOString();
+
+          // Set the text content of the title element.
+          titleElement.innerText = `Plant Checklist - ${currentDate}`;
+        },
+  })
+</script>
+
+<style>
+    body {
+      padding: 0px 10px 0px 10px;
+    }
+    .q-field {
+      padding: 5px;
+    }
+    #container {
+      width: 1280px;
+      max-width: 100%;
+      margin: auto;
+    }
+
+    #tableHeaders {
+      background-color: bisque;
+    }
+
+    .q-input {
+      font-family: arial black;
+      font-size: 1.5em;
+      text-transform: uppercase;
+    }
+
+    * {
+    -webkit-print-color-adjust: exact !important;   /* Chrome, Safari, Edge */
+    color-adjust: exact !important;                 /*Firefox*/
+    }
+
+    @media print {
+      #noPrint {
+        visibility: hidden;
+      }
+    }
+</style>
