@@ -197,13 +197,13 @@
           </div>
           <div class="row">
             <div class="col">
-              <q-input filled v-model="beforeExcavation" label="Gas Reading %" type="number" suffix="%"></q-input>
+              <q-input filled v-model="gasReading.beforeExcavation" label="Gas Reading %" type="number" suffix="%"></q-input>
             </div>
             <div class="col">
-              <q-input filled v-model="middleExcavation" label="Gas Reading %" type="number" suffix="%"></q-input>
+              <q-input filled v-model="gasReading.middleExcavation" label="Gas Reading %" type="number" suffix="%"></q-input>
             </div>
             <div class="col">
-              <q-input filled v-model="exposedMain" label="Gas Reading %" type="number" suffix="%"></q-input>
+              <q-input filled v-model="gasReading.exposedMain" label="Gas Reading %" type="number" suffix="%"></q-input>
             </div>
 
           </div>
@@ -311,6 +311,7 @@ export default defineComponent({
         'Discovery, removal or disturbance of Asbestos': false,
         'Crane operation and lifting equipment': false,
       },
+      whyNot:"",
       personAssignedAsSpotter: '',
 
 
@@ -345,10 +346,9 @@ export default defineComponent({
       assetsWithin500mmLocated: undefined,
       assetsWithin500mmProved: undefined,
 
-      ifNoWhy: {
-        'ifNoWhy1': '',
-        'ifNoWhy2': '',
-      },
+      ifNoWhy1: '',
+      ifNoWhy2: '',
+
 
       //Section 6
       gasReading: {

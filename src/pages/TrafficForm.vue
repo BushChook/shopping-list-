@@ -286,7 +286,7 @@
               </div>
               <div class="col-2">
                 Site Specific:
-                <q-select standout="bg-teal text-white" v-model="model" :options="options" label="Custom standout" />
+                <q-input standout="bg-teal text-white" v-model="siteSpecific" :options="siteSpecificOptions" label="Custom standout" />
               </div>
             </div>
 
@@ -423,6 +423,7 @@ export default defineComponent({
       roughOrUnsealedSurfaces: "",
       pedestriansThroughTheWorkSite:"",
       siteDistance:"",
+      additionalHazards:"",
 
       //Part 4
       reductionOfSpeed:"",
@@ -433,6 +434,8 @@ export default defineComponent({
       pedestrianTmpRequired:"",
       tmpRequireModification:"",
       trafficManagementPlan: "001",
+      siteSpecific:"",
+      siteSpecificOptions:"",
 
       //Part 5
       crewLeader:'',
