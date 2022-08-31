@@ -433,7 +433,7 @@ export default defineComponent({
       moaRequired:"",
       pedestrianTmpRequired:"",
       tmpRequireModification:"",
-      trafficManagementPlan: "001",
+      trafficManagementPlan: "1",
       siteSpecific:"",
       siteSpecificOptions:"",
 
@@ -790,21 +790,10 @@ export default defineComponent({
 
   // This function is run before the HTML has been rendered.
   created() {
-    // Setup a function to "pad" the numbers.
-    const pad = function(num, size) {
-      num = num.toString();
-      while (num.length < size) num = "0" + num;
-      return num;
-    }
+      for(let i = 1; i < 15; i++) {
+      this.tmpOptions.push(i)
+      }
 
-    // Loop through numbers 0 to 30.
-    for(let i = 1; i < 30; i++) {
-      // Pad the number of 'i'.
-      const paddedNumber = pad(i, 3);
-
-      // Add this padded number to our list of TMP options.
-      this.tmpOptions.push(paddedNumber)
-    }
     // Get a reference to the title element using a CSS selector.
     const titleElement = document.querySelector('title');
 
