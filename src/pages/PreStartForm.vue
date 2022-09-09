@@ -259,6 +259,7 @@
 
 <script>
 import { defineComponent } from 'vue'
+import { get, set } from 'idb-keyval';
 
 export default defineComponent({
   name: 'IndexPage',
