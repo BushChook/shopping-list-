@@ -477,7 +477,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+import { get, set } from 'idb-keyval';
+
 
 export default defineComponent({
   name: 'PlantChecklist',
@@ -850,13 +852,13 @@ export default defineComponent({
             const fieldsToSaveAsString = JSON.stringify(fieldsToSave);
 
             // Save it to local storage with key "savedForm".
-            window.localStorage.setItem('savedForm-PlantChecklist', fieldsToSaveAsString);
+            set('savedForm-PlantChecklist', fieldsToSaveAsString);
           },
 
           loadFromLocalStorage: function()
           {
             // Load the form from Local Storage (this will be a string at the moment).
-            const savedFormAsString = window.localStorage.getItem('savedForm-PlantChecklist');
+            const savedFormAsString = get('savedForm-PlantChecklist');
 
             // Parse that string into a JSON obect.
             const savedFormAsObject = JSON.parse(savedFormAsString);

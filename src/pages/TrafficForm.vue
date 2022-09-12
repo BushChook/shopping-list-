@@ -347,7 +347,9 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
+import { get, set } from 'idb-keyval';
+
 
 export default defineComponent({
   name: 'TrafficForm',
@@ -765,14 +767,14 @@ export default defineComponent({
       const fieldsToSaveAsTrafficString = JSON.stringify(fieldsToSave);
 
       // Save it to local storage with key "savedForm".
-      window.localStorage.setItem('savedForm', fieldsToSaveAsTrafficString);
+      set('savedForm', fieldsToSaveAsTrafficString);
     },
 
     loadFromLocalStorage: function()
     {
       // Load the form from Local Storage (this will be a string at the moment).
-      const savedFormAsString = window.localStorage.getItem('savedForm');
-      const savedJobDetailsFormAsString = window.localStorage.getItem('savedForm-jobDetails');
+      const savedFormAsString = get('savedForm');
+      const savedJobDetailsFormAsString = get('savedForm-jobDetails');
 
       // Parse that string into a JSON obect.
       const savedFormAsObject = JSON.parse(savedFormAsString);

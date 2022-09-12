@@ -489,17 +489,17 @@ export default defineComponent({
       const fieldsToSaveJobDetailsAsString = JSON.stringify(fieldsToSaveJobDetails);
 
       // Save it to local storage with key "savedForm".
-      window.localStorage.setItem('savedForm-PreStart', fieldsToSaveToPreStartAsString);
-      window.localStorage.setItem('savedForm-tagDates', fieldsToSaveTagDatesAsString);
-      window.localStorage.setItem('savedForm-jobDetails', fieldsToSaveJobDetailsAsString);
+      set('savedForm-PreStart', fieldsToSaveToPreStartAsString);
+      set('savedForm-tagDates', fieldsToSaveTagDatesAsString);
+      set('savedForm-jobDetails', fieldsToSaveJobDetailsAsString);
     },
 
     loadFromLocalStorage: function()
     {
       // Load the form from Local Storage (this will be a string at the moment).
-      const savedPreStartFormAsString = window.localStorage.getItem('savedForm-PreStart');
-      const savedTagDatesFormAsString = window.localStorage.getItem('savedForm-tagDates');
-      const savedJobDetailsFormAsString = window.localStorage.getItem('savedForm-jobDetails');
+      const savedPreStartFormAsString = get('savedForm-PreStart');
+      const savedTagDatesFormAsString = get('savedForm-tagDates');
+      const savedJobDetailsFormAsString = get('savedForm-jobDetails');
 
       // Parse that string into a JSON obect.
       const savedPreStartFormAsObject = JSON.parse(savedPreStartFormAsString);
@@ -518,7 +518,7 @@ export default defineComponent({
 
     loadTagDates: function()
     {
-      const savedTagDatesFormAsString = window.localStorage.getItem('savedForm-tagDates');
+      const savedTagDatesFormAsString = get('savedForm-tagDates');
       const savedTagDatesFormAsObject = JSON.parse(savedTagDatesFormAsString);
       Object.assign(this, savedTagDatesFormAsObject);
     }
