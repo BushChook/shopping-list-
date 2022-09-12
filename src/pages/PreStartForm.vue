@@ -3,7 +3,7 @@
     <div id="container">
       <h1>Zero Harm Pre-Start Meeting Record</h1>
 
-      <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+      <q-form class="q-gutter-md">
 
         <!-- Section 1 -->
         <h2>Section 1- General Details</h2>
@@ -258,7 +258,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent } from 'vue';
 import { get, set } from 'idb-keyval';
 
 export default defineComponent({
@@ -509,7 +509,7 @@ export default defineComponent({
       // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
       // But you could just set each field manually.
       // e.g.
-      // this.oermitNumbers = savedFormAsObject.permitNumbers;
+      // this.permitNumbers = savedFormAsObject.permitNumbers;
       // etc
       Object.assign(this, savedPreStartFormAsObject);
       Object.assign(this, savedTagDatesFormAsObject);

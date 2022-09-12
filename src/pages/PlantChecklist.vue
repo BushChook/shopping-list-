@@ -2,7 +2,7 @@
   <q-page class="flex flex-center">
     <div id="container">
         <h1>Daily Plant Inspection Form</h1>
-        <q-form @submit="onSubmit" @reset="onReset" class="q-gutter-md">
+        <q-form class="q-gutter-md">
           <!--Part 1-->
           <h3>1. Plant Type:</h3>
           <div class="row">
@@ -867,7 +867,7 @@ export default defineComponent({
             // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
             // But you could just set each field manually.
             // e.g.
-            // this.oermitNumbers = savedFormAsObject.permitNumbers;
+            // this.permitNumbers = savedFormAsObject.permitNumbers;
             // etc
             Object.assign(this, savedFormAsObject);
           }

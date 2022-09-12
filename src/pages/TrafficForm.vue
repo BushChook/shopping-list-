@@ -783,7 +783,7 @@ export default defineComponent({
       // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
       // But you could just set each field manually.
       // e.g.
-      // this.oermitNumbers = savedFormAsObject.permitNumbers;
+      // this.permitNumbers = savedFormAsObject.permitNumbers;
       // etc
       Object.assign(this, savedFormAsObject);
       Object.assign(this, savedJobDetailsFormAsObject);
