@@ -451,7 +451,7 @@ export default defineComponent({
       return 'positive'
     },
 
-    saveToLocalStorage: function()
+    saveToLocalStorage: async function()
     {
       // Choose a list of fields to save.
       const fieldsToSaveToPreStart = {
@@ -489,17 +489,17 @@ export default defineComponent({
       const fieldsToSaveJobDetailsAsString = JSON.stringify(fieldsToSaveJobDetails);
 
       // Save it to local storage with key "savedForm".
-      set('savedForm-PreStart', fieldsToSaveToPreStartAsString);
-      set('savedForm-tagDates', fieldsToSaveTagDatesAsString);
-      set('savedForm-jobDetails', fieldsToSaveJobDetailsAsString);
+      await set('savedForm-PreStart', fieldsToSaveToPreStartAsString);
+      await set('savedForm-tagDates', fieldsToSaveTagDatesAsString);
+      await set('savedForm-jobDetails', fieldsToSaveJobDetailsAsString);
     },
 
-    loadFromLocalStorage: function()
+    loadFromLocalStorage: async function()
     {
       // Load the form from Local Storage (this will be a string at the moment).
-      const savedPreStartFormAsString = get('savedForm-PreStart');
-      const savedTagDatesFormAsString = get('savedForm-tagDates');
-      const savedJobDetailsFormAsString = get('savedForm-jobDetails');
+      const savedPreStartFormAsString = await get('savedForm-PreStart');
+      const savedTagDatesFormAsString = await get('savedForm-tagDates');
+      const savedJobDetailsFormAsString = await get('savedForm-jobDetails');
 
       // Parse that string into a JSON obect.
       const savedPreStartFormAsObject = JSON.parse(savedPreStartFormAsString);
@@ -516,9 +516,9 @@ export default defineComponent({
       Object.assign(this, savedJobDetailsFormAsObject);
     },
 
-    loadTagDates: function()
+    loadTagDates: async function()
     {
-      const savedTagDatesFormAsString = get('savedForm-tagDates');
+      const savedTagDatesFormAsString = await get('savedForm-tagDates');
       const savedTagDatesFormAsObject = JSON.parse(savedTagDatesFormAsString);
       Object.assign(this, savedTagDatesFormAsObject);
     }
