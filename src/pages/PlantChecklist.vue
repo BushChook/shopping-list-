@@ -804,7 +804,7 @@ export default defineComponent({
 
 
 
-          saveToLocalStorage: function()
+          saveToLocalStorage: async function()
           {
             // Choose a list of fields to save.
             const fieldsToSave = {
@@ -852,13 +852,13 @@ export default defineComponent({
             const fieldsToSaveAsString = JSON.stringify(fieldsToSave);
 
             // Save it to local storage with key "savedForm".
-            set('savedForm-PlantChecklist', fieldsToSaveAsString);
+            await set('savedForm-PlantChecklist', fieldsToSaveAsString);
           },
 
-          loadFromLocalStorage: function()
+          loadFromLocalStorage: async function()
           {
             // Load the form from Local Storage (this will be a string at the moment).
-            const savedFormAsString = get('savedForm-PlantChecklist');
+            const savedFormAsString = await get('savedForm-PlantChecklist');
 
             // Parse that string into a JSON obect.
             const savedFormAsObject = JSON.parse(savedFormAsString);

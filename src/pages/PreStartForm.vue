@@ -195,18 +195,6 @@
               <q-input filled v-model.number="gasReading.exposedMain" label="Gas Reading %" type="number" suffix="%" step="0.1" min="0.0" max="100.0" :bg-color="getGasReadingColor(gasReading.exposedMain)"></q-input>
             </div>
           </div>
-          <div class="row">
-            <div class="col">
-              <q-input filled v-model="gasReading.beforeExcavation" label="Gas Reading %" type="number" suffix="%"></q-input>
-            </div>
-            <div class="col">
-              <q-input filled v-model="gasReading.middleExcavation" label="Gas Reading %" type="number" suffix="%"></q-input>
-            </div>
-            <div class="col">
-              <q-input filled v-model="gasReading.exposedMain" label="Gas Reading %" type="number" suffix="%"></q-input>
-            </div>
-
-          </div>
 
         </div>
 
@@ -258,8 +246,8 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { get, set } from 'idb-keyval';
+import { defineComponent } from 'vue'
+import { get, set } from 'idb-keyval'
 
 export default defineComponent({
   name: 'IndexPage',
@@ -283,21 +271,19 @@ export default defineComponent({
         'Hot Work': '',
         'Confined Space': '',
         'No Go Zome (less than 0.5m)': '',
-        'Authority': '',
+        Authority: ''
       },
 
       tagDates: {
         'Electrical Lead': '',
         'Fire Extinguisher': '',
-        'RCD': '',
+        RCD: '',
         'Fusion Iron': '',
         'Gas Detector': '',
         'Electrofusion Box': '',
         'Washington Tester': '',
-        'First Aid': '',
+        'First Aid': ''
       },
-
-
 
       // Section 4
       swmsUnderstoodByAllPersonnel: undefined,
@@ -310,11 +296,10 @@ export default defineComponent({
         'Excavation and trenching greater than 1.5m': false,
         'People or objects falling greater than 2m from height': false,
         'Discovery, removal or disturbance of Asbestos': false,
-        'Crane operation and lifting equipment': false,
+        'Crane operation and lifting equipment': false
       },
-      whyNot:"",
+      whyNot: '',
       personAssignedAsSpotter: '',
-
 
       // Section 5
       undergroundServices: {
@@ -340,7 +325,7 @@ export default defineComponent({
         'Power to units or bungalows': '',
         'Sprinkler systems': '',
         'Height of machine (m)': '',
-        'Lowest cable (m)': '',
+        'Lowest cable (m)': ''
 
       },
       passiveSweepWithLocator: undefined,
@@ -350,26 +335,23 @@ export default defineComponent({
       ifNoWhy1: '',
       ifNoWhy2: '',
 
-
-      //Section 6
+      // Section 6
       gasReading: {
-        'beforeExcavation': undefined,
-        'middleExacavation': undefined,
-        'exposedMain': undefined
+        beforeExcavation: undefined,
+        middleExacavation: undefined,
+        exposedMain: undefined
       },
 
-      //Section 7
+      // Section 7
       attendees: [''],
-      crewLeader:'',
+      crewLeader: ''
     }
   },
 
   // Anything within here will run when your page is first loaded.
   // Kind of like a setup function... do shit when page first loads.
   //
-  mounted()
-  {
-
+  mounted () {
 
     // Your other initialization code that's already here...
 
@@ -384,34 +366,31 @@ export default defineComponent({
     // %%% const signaturePad = new SignaturePad(canvas);
   },
 
-  created() {
+  created () {
     // Get a reference to the title element using a CSS selector.
-    const titleElement = document.querySelector('title');
+    const titleElement = document.querySelector('title')
 
     // Get the current date as an ISO string.
     // TODO: You probably want to find a way to convert this to YYYY-MM-DD format.
-    const currentDate = new Date().toISOString();
+    const currentDate = new Date().toISOString()
 
     // Set the text content of the title element.
-    titleElement.innerText = `Job Sheet - ${currentDate}`;
-
-
+    titleElement.innerText = `Job Sheet - ${currentDate}`
   },
 
-  methods:{
-    tagDateExpiry: function(tagDate) {
+  methods: {
+    tagDateExpiry: function (tagDate) {
       // Wrap the tag date in Moment.JS Format.
       const tagDateInMomentFormat = moment(tagDate) // Some date from your form
 
       // Get today's date.
-      const todaysDate = moment(Date.now());
+      const todaysDate = moment(Date.now())
 
       // Get today's date and subtract seven days from it.
-      const oneWeekBeforeToday = moment(Date.now()).add(7, 'd');
+      const oneWeekBeforeToday = moment(Date.now()).add(7, 'd')
 
       // If the tag date is more than today's date.
-      if (tagDateInMomentFormat < todaysDate)
-      {
+      if (tagDateInMomentFormat < todaysDate) {
         return 'negative'
       }
 
@@ -426,33 +405,27 @@ export default defineComponent({
       return 'default'
     },
 
-    getAssetColor: function(quantity)
-    {
-      if(quantity > 0)
-      {
+    getAssetColor: function (quantity) {
+      if (quantity > 0) {
         return 'positive'
       }
 
       return 'default'
     },
 
-    getGasReadingColor: function(reading)
-    {
-      if(typeof reading === 'undefined')
-      {
+    getGasReadingColor: function (reading) {
+      if (typeof reading === 'undefined') {
         return
       }
 
-      if(reading > 0)
-      {
+      if (reading > 0) {
         return 'negative'
       }
 
       return 'positive'
     },
 
-    saveToLocalStorage: async function()
-    {
+    saveToLocalStorage: async function () {
       // Choose a list of fields to save.
       const fieldsToSaveToPreStart = {
         preStartMeetingConductedBy: this.preStartMeetingConductedBy,
@@ -469,58 +442,56 @@ export default defineComponent({
         crewLeader: this.crewLeader,
         passiveSweepWithLocator: this.passiveSweepWithLocator,
         assetsWithin500mmLocated: this.assetsWithin500mmLocated,
-        assetsWithin500mmProved: this.assetsWithin500mmProved,
+        assetsWithin500mmProved: this.assetsWithin500mmProved
 
         // etc...
-      };
+      }
 
       const fieldsToSaveTagDates = {
-        tagDates: this.tagDates,
+        tagDates: this.tagDates
       }
 
       const fieldsToSaveJobDetails = {
         jobNumber: this.jobNumber,
-        address: this.address,
+        address: this.address
       }
 
       // We need to convert the data to a JSON 'string' in order to save it into localStorage.
-      const fieldsToSaveToPreStartAsString = JSON.stringify(fieldsToSaveToPreStart);
-      const fieldsToSaveTagDatesAsString = JSON.stringify(fieldsToSaveTagDates);
-      const fieldsToSaveJobDetailsAsString = JSON.stringify(fieldsToSaveJobDetails);
+      const fieldsToSaveToPreStartAsString = JSON.stringify(fieldsToSaveToPreStart)
+      const fieldsToSaveTagDatesAsString = JSON.stringify(fieldsToSaveTagDates)
+      const fieldsToSaveJobDetailsAsString = JSON.stringify(fieldsToSaveJobDetails)
 
       // Save it to local storage with key "savedForm".
-      await set('savedForm-PreStart', fieldsToSaveToPreStartAsString);
-      await set('savedForm-tagDates', fieldsToSaveTagDatesAsString);
-      await set('savedForm-jobDetails', fieldsToSaveJobDetailsAsString);
+      await set('savedForm-PreStart', fieldsToSaveToPreStartAsString)
+      await set('savedForm-tagDates', fieldsToSaveTagDatesAsString)
+      await set('savedForm-jobDetails', fieldsToSaveJobDetailsAsString)
     },
 
-    loadFromLocalStorage: async function()
-    {
+    loadFromLocalStorage: async function () {
       // Load the form from Local Storage (this will be a string at the moment).
-      const savedPreStartFormAsString = await get('savedForm-PreStart');
-      const savedTagDatesFormAsString = await get('savedForm-tagDates');
-      const savedJobDetailsFormAsString = await get('savedForm-jobDetails');
+      const savedPreStartFormAsString = await get('savedForm-PreStart')
+      const savedTagDatesFormAsString = await get('savedForm-tagDates')
+      const savedJobDetailsFormAsString = await get('savedForm-jobDetails')
 
       // Parse that string into a JSON obect.
-      const savedPreStartFormAsObject = JSON.parse(savedPreStartFormAsString);
-      const savedTagDatesFormAsObject = JSON.parse(savedTagDatesFormAsString);
-      const savedJobDetailsFormAsObject = JSON.parse(savedJobDetailsFormAsString);
+      const savedPreStartFormAsObject = JSON.parse(savedPreStartFormAsString)
+      const savedTagDatesFormAsObject = JSON.parse(savedTagDatesFormAsString)
+      const savedJobDetailsFormAsObject = JSON.parse(savedJobDetailsFormAsString)
       // This is a bit of a shortcut because I'm lazy.
       // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
       // But you could just set each field manually.
       // e.g.
       // this.permitNumbers = savedFormAsObject.permitNumbers;
       // etc
-      Object.assign(this, savedPreStartFormAsObject);
-      Object.assign(this, savedTagDatesFormAsObject);
-      Object.assign(this, savedJobDetailsFormAsObject);
+      Object.assign(this, savedPreStartFormAsObject)
+      Object.assign(this, savedTagDatesFormAsObject)
+      Object.assign(this, savedJobDetailsFormAsObject)
     },
 
-    loadTagDates: async function()
-    {
-      const savedTagDatesFormAsString = await get('savedForm-tagDates');
-      const savedTagDatesFormAsObject = JSON.parse(savedTagDatesFormAsString);
-      Object.assign(this, savedTagDatesFormAsObject);
+    loadTagDates: async function () {
+      const savedTagDatesFormAsString = await get('savedForm-tagDates')
+      const savedTagDatesFormAsObject = JSON.parse(savedTagDatesFormAsString)
+      Object.assign(this, savedTagDatesFormAsObject)
     }
   }
 })
@@ -561,9 +532,7 @@ h2 {
   padding: 5px;
 }
 
-.q-btn {
-  margin: 1em;
-}
+
 
 .q-input {
   font-family: arial black;

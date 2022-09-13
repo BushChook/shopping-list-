@@ -22,7 +22,6 @@
 
             <div class="row">
               <h4>1. Third Party Traffic Management Assessment</h4>
-              </div>
             </div>
             <div class="row">
               <div class="col">
@@ -49,12 +48,13 @@
                 <q-btn-toggle v-model="contractorSiteSpecificTmpInPlace" class="my-custom-toggle" no-caps unelevated toggle-color="primary"
                 push glossy :options="[ {label: 'YES', value: 'one'}, {label: 'NO', value: 'two'}]"/>
               </div>
-              <div class="col"/>
+              <div class="col">
                 <div>
                   Memorandum of Authorisation sighted?
                 </div>
                 <q-btn-toggle v-model="memorandumOfAuthorisationSighted" class="my-custom-toggle" no-caps unelevated toggle-color="primary"
                 push glossy :options="[ {label: 'YES', value: 'one'}, {label: 'NO', value: 'two'}]"/>
+              </div>
             </div>
 
             <!--Part 2-->
@@ -286,7 +286,7 @@
               </div>
               <div class="col-2">
                 Site Specific:
-                <q-input standout="bg-teal text-white" v-model="siteSpecific" :options="siteSpecificOptions" label="Custom standout" />
+                <q-input standout="bg-teal text-white" v-model="siteSpecific" :options="siteSpecificOptions" label="" />
               </div>
             </div>
 
@@ -341,6 +341,7 @@
               <q-btn @click="saveToLocalStorage">Save To LocalStorage</q-btn>
               <q-btn @click="loadFromLocalStorage">Load From LocalStorage</q-btn>
             </div>
+          </div>
         </q-form>
       </div>
   </q-page>
@@ -727,7 +728,7 @@ export default defineComponent({
       this.siteRiskRating = lookupTable[this.trafficSpeed][this.roadType][this.clearenceBetweenWorkers];
     },
 
-    saveToLocalStorage: function()
+    saveToLocalStorage: async function()
     {
       // Choose a list of fields to save.
       const fieldsToSave = {
@@ -767,14 +768,14 @@ export default defineComponent({
       const fieldsToSaveAsTrafficString = JSON.stringify(fieldsToSave);
 
       // Save it to local storage with key "savedForm".
-      set('savedForm', fieldsToSaveAsTrafficString);
+      await set('savedForm', fieldsToSaveAsTrafficString);
     },
 
-    loadFromLocalStorage: function()
+    loadFromLocalStorage: async function()
     {
       // Load the form from Local Storage (this will be a string at the moment).
-      const savedFormAsString = get('savedForm');
-      const savedJobDetailsFormAsString = get('savedForm-jobDetails');
+      const savedFormAsString = await get('savedForm');
+      const savedJobDetailsFormAsString = await get('savedForm-jobDetails');
 
       // Parse that string into a JSON obect.
       const savedFormAsObject = JSON.parse(savedFormAsString);
