@@ -814,6 +814,7 @@ export default defineComponent({
     body {
       padding: 0px 10px 0px 10px;
     }
+
     .q-field {
       padding: 5px;
     }
