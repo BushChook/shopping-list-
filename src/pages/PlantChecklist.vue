@@ -920,4 +920,24 @@ export default defineComponent({
         visibility: hidden;
       }
     }
+
+    @media screen and (max-width: 1000px){
+      body{
+        font-size: .5em;
+      }
+
+
+      #container {
+        width:900px;
+        max-width: 100%;
+        margin: auto;
+      }
+
+      .form-section {max-width: 100%; width: 900px;}
+
+      h3{ font-size: 3em}
+      .q-field {
+        padding: 1px;
+      }
+    }
 </style>

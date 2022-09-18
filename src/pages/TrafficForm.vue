@@ -61,7 +61,7 @@
 
             <h4>2. Traffic Management Assessment</h4>
             <div class="row">
-              <div class="col-6">
+              <div class="col">
                 Road Type
                 <q-btn-toggle
                 v-model="roadType"
@@ -80,7 +80,7 @@
 
 
 
-              <div class="col-6">
+              <div class="col">
                 Traffic Speed
                 <q-btn-toggle
                 v-model="trafficSpeed"
