@@ -1,3 +1,6 @@
+<!-- eslint-disable key-spacing -->
+<!-- eslint-disable quotes -->
+<!-- eslint-disable quotes -->
 <template>
   <q-page class="flex flex-center">
     <div id="container">
@@ -61,7 +64,7 @@
 
             <h4>2. Traffic Management Assessment</h4>
             <div class="row">
-              <div class="col">
+              <div class="col-6 col-sm-12">>
                 Road Type
                 <q-btn-toggle
                 v-model="roadType"
@@ -80,7 +83,7 @@
 
 
 
-              <div class="col">
+              <div class="col-6 col-sm-12">
                 Traffic Speed
                 <q-btn-toggle
                 v-model="trafficSpeed"
@@ -98,7 +101,7 @@
             </div>
             <div class="row">
 
-              <div class="col">
+              <div class="col-6 col-sm-12">>
                 Clearence between workers and traffic
                 <q-btn-toggle
                 v-model="clearenceBetweenWorkers"
@@ -116,7 +119,7 @@
 
 
 
-              <div class="col">
+              <div class="col-6 col-sm-12">>
                 Task Duration
                 <q-btn-toggle
                 v-model="taskDuration"
@@ -348,19 +351,18 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { get, set } from 'idb-keyval';
-
+import { defineComponent } from 'vue'
+import { get, set } from 'idb-keyval'
 
 export default defineComponent({
   name: 'TrafficForm',
 
-  data() {
+  data () {
     return {
       jobNumber: "",
       address: "",
 
-      //Part 1
+      // Part 1
 
       tmpOptions: [],
       trafficManagementContractorBeingUtilised: "",
@@ -368,59 +370,59 @@ export default defineComponent({
       contractorSiteSpecificTmpInPlace: "",
       memorandumOfAuthorisationSighted:"",
 
-      //Part 2
+      // Part 2
       roadType:"",
-      roadType1:[
-        {value: 'Local', label: 'Local'},
-        {value: 'Collector', label: 'Collector'},
-        {value: 'Secondary', label: 'Secondary'},
-        {value: 'Arterial', label: 'Arterial'},
-        {value: 'Freeway', label: 'Freeway'}
+      roadType1: [
+        { value: 'Local', label: 'Local' },
+        { value: 'Collector', label: 'Collector' },
+        { value: 'Secondary', label: 'Secondary' },
+        { value: 'Arterial', label: 'Arterial' },
+        { value: 'Freeway', label: 'Freeway' }
       ],
 
       trafficSpeed:"",
-      trafficSpeed1:[
-        {label: '40', value: '40'},
-        {label: '50', value: '50'},
-        {label: '60', value: '60'},
-        {label: '70', value: '70'},
-        {label: '80', value: '80'},
-        {label: '90', value: '90'},
-        {label: '100', value: '100'},
-        {label: '110', value: '110'}
+      trafficSpeed1: [
+        { label: '40', value: '40' },
+        { label: '50', value: '50' },
+        { label: '60', value: '60' },
+        { label: '70', value: '70' },
+        { label: '80', value: '80' },
+        { label: '90', value: '90' },
+        { label: '100', value: '100' },
+        { label: '110', value: '110' }
       ],
 
       clearenceBetweenWorkers:"",
-      clearenceBetweenWorkers1:  [
-        {label: '<1.2m', value: '<1.2m'},
-        {label: '1.2 - 3m', value: '1.2 - 3m'},
-        {label: '3 - 9m', value: '3 - 9m'},
-        {label: '>9m', value: '>9m'}
+      clearenceBetweenWorkers1: [
+        { label: '<1.2m', value: '<1.2m' },
+        { label: '1.2 - 3m', value: '1.2 - 3m' },
+        { label: '3 - 9m', value: '3 - 9m' },
+        { label: '>9m', value: '>9m' }
       ],
 
       taskDuration:"",
-      taskDuration1:  [
-      {value: '<5 mins', label: '<5 mins'},
-      {value: '<20 mins', label: '<20 mins'},
-      {value: 'Short Term Work', label: 'Short Term Work'},
-      {value: 'Long Term Work', label: 'Long Term Work'}
+      taskDuration1: [
+        { value: '<5 mins', label: '<5 mins' },
+        { value: '<20 mins', label: '<20 mins' },
+        { value: 'Short Term Work', label: 'Short Term Work' },
+        { value: 'Long Term Work', label: 'Long Term Work' }
       ],
 
       siteRiskRating: 0,
       trafficSliderSafetyLabels: [
-      { value: 3, label: 'Low' },
-      { value: 6, label: 'Medium' },
-      { value: 9, label: 'High' },
-      { value: 12, label: 'Very High' }
+        { value: 3, label: 'Low' },
+        { value: 6, label: 'Medium' },
+        { value: 9, label: 'High' },
+        { value: 12, label: 'Very High' }
       ],
 
       // Part 3
       trafficVolume:"",
-      trafficVolume1:[
-      {label: 'Low', value: 'Low'},
-      {label: 'Medium', value: 'Medium'},
-      {label: 'High', value: 'High'},
-      {label: 'Very High', value: 'Very High'}
+      trafficVolume1: [
+        { label: 'Low', value: 'Low' },
+        { label: 'Medium', value: 'Medium' },
+        { label: 'High', value: 'High' },
+        { label: 'Very High', value: 'Very High' }
       ],
 
       roughOrUnsealedSurfaces: "",
@@ -428,43 +430,42 @@ export default defineComponent({
       siteDistance:"",
       additionalHazards:"",
 
-      //Part 4
+      // Part 4
       reductionOfSpeed:"",
       trafficControllersRequired: "",
       roadClosure:"",
       tmpPlanRequired:"",
-      moaRequired:"",
+      moaRequired: "",
       pedestrianTmpRequired:"",
       tmpRequireModification:"",
       trafficManagementPlan: "1",
       siteSpecific:"",
       siteSpecificOptions:"",
 
-      //Part 5
-      crewLeader:'',
+      // Part 5
+      crewLeader: "",
     };
   },
 
-  methods:{
+  methods: {
     getColorForSlider: function () {
-      if(this.siteRiskRating <=5) {
+      if (this.siteRiskRating <= 5) {
         return 'green';
       }
-      else if (this.siteRiskRating <=8){
+      else if (this.siteRiskRating <= 8) {
       return 'yellow';
       }
-      else if(this.siteRiskRating <=11){
+      else if(this.siteRiskRating <= 11) {
       return 'orange';
       }
-      else if(this.siteRiskRating >=12){
+      else if(this.siteRiskRating >= 12) {
       return 'red';
       }
     },
 
-    getDanger: function(){
-
-      if(!this.trafficSpeed || !this.roadType || !this.clearenceBetweenWorkers)
-      {return;}
+    getDanger: function () {
+      if (!this.trafficSpeed || !this.roadType || !this.clearenceBetweenWorkers)
+      { return; }
 
       const lookupTable = {
         40: {
@@ -733,7 +734,7 @@ export default defineComponent({
       // Choose a list of fields to save.
       const fieldsToSave = {
 
-        //part 1
+        // part 1
         jobNumber: this.jobNumber,
         address: this.address,
         trafficManagementPlan: this.trafficManagementPlan,
@@ -743,15 +744,15 @@ export default defineComponent({
         contractorSiteSpecificTmpInPlace: this.contractorSiteSpecificTmpInPlace,
         memorandumOfAuthorisationSighted: this.memorandumOfAuthorisationSighted,
 
-        //part 3
+        // part 3
         trafficVolume: this.trafficVolume,
         trafficVolume1: this.trafficVolume1,
         roughOrUnsealedSurfaces: this.roughOrUnsealedSurfaces,
         pedestriansThroughTheWorkSite: this.pedestriansThroughTheWorkSite,
         siteDistance: this.siteDistance,
 
-        //part 4
-        reductionOfSpeed:this.reductionOfSpeed,
+        // part 4
+        reductionOfSpeed: this.reductionOfSpeed,
         trafficControllersRequired: this.trafficControllersRequired,
         roadClosure: this.roadClosure,
         tmpPlanRequired: this.tmpPlanRequired,
@@ -759,7 +760,7 @@ export default defineComponent({
         pedestrianTmpRequired: this.pedestrianTmpRequired,
         tmpRequireModification: this.tmpRequireModification,
 
-        //part 5
+        // part 5
         crewLeader: this.crewLeader,
         // etc...
       };
@@ -771,7 +772,7 @@ export default defineComponent({
       await set('savedForm', fieldsToSaveAsTrafficString);
     },
 
-    loadFromLocalStorage: async function()
+    loadFromLocalStorage: async function ()
     {
       // Load the form from Local Storage (this will be a string at the moment).
       const savedFormAsString = await get('savedForm');
@@ -792,10 +793,10 @@ export default defineComponent({
   },
 
   // This function is run before the HTML has been rendered.
-  created() {
-      for(let i = 1; i < 15; i++) {
+  created () {
+    for (let i = 1; i < 15; i++) {
       this.tmpOptions.push(i)
-      }
+    }
 
     // Get a reference to the title element using a CSS selector.
     const titleElement = document.querySelector('title');

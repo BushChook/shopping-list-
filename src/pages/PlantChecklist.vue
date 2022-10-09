@@ -477,414 +477,403 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue';
-import { get, set } from 'idb-keyval';
-
+import { defineComponent } from 'vue'
+import { get, set } from 'idb-keyval'
 
 export default defineComponent({
   name: 'PlantChecklist',
-    data() {
-          return {
-            // Part 1
-            plantType: {
-              "Fork lift": false,
-              "Hi AB Crane": false,
-              Backhoe: false,
-              Excavator: false,
-              "Vibrating Plate/Wacker": false,
-              "Skid Steer Loader": false,
-              Compressor: false,
-              "Truck / Trailer": false,
-              Generator: false,
-              "Golf Buggy": false,
-              ATV: false,
-            },
-            Other: "",
+  data () {
+    return {
+      // Part 1
+      plantType: {
+        'Fork lift': false,
+        'Hi AB Crane': false,
+        Backhoe: false,
+        Excavator: false,
+        'Vibrating Plate/Wacker': false,
+        'Skid Steer Loader': false,
+        Compressor: false,
+        'Truck / Trailer': false,
+        Generator: false,
+        'Golf Buggy': false,
+        ATV: false
+      },
+      Other: '',
 
-            // Part 2
-            startDate: "",
-            make: "",
-            model: "",
-            siteLocation: "",
-            registration: "",
+      // Part 2
+      startDate: '',
+      make: '',
+      model: '',
+      siteLocation: '',
+      registration: '',
 
-            //Part 3
-            fluids: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      // Part 3
+      fluids: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            visibility: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      visibility: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            cabin: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      cabin: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            wheels: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      wheels: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            guards: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      guards: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            warningDevices: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      warningDevices: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            loadCart: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      loadCart: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            brakes: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      brakes: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            body: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      body: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            controls: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      controls: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            hydraulics: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      hydraulics: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            engineExhaust: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      engineExhaust: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            fireExtinguisher: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      fireExtinguisher: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            otherRequirement: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      otherRequirement: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            tyres: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      tyres: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            operation: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      operation: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            jib: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      jib: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            safetyChains: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      safetyChains: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            shackleAndSwivel: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      shackleAndSwivel: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            decals: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      decals: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            rops: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      rops: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            attachPoints1: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      attachPoints1: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            tracks: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      tracks: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            workingLoads: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      workingLoads: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            attachPoints2: {
-              monday: "",
-              tuesday: "",
-              wednesday: "",
-              thursday: "",
-              friday: "",
-              saturday: "",
-              sunday: "",
-            },
+      attachPoints2: {
+        monday: '',
+        tuesday: '',
+        wednesday: '',
+        thursday: '',
+        friday: '',
+        saturday: '',
+        sunday: ''
+      },
 
-            // Part 4
+      // Part 4
 
-            faultRectified: false,
-            plantUnsafeToUse: false,
+      faultRectified: false,
+      plantUnsafeToUse: false,
 
-            //Part 5
-            crewLeader1:'',
+      // Part 5
+      crewLeader1: ''
 
+    }
+  },
 
-          };
+  methods: {
 
+    getChecklistColor: function (value) {
+      if (value === true) {
+        return 'positive'
+      }
 
-        },
+      if (value === false) {
+        return 'negative'
+      }
 
-        methods: {
+      return 'default'
+    },
 
-          getChecklistColor: function(value)
-          {
-            if(value === true) {
-              return 'positive';
-            }
+    getChecklistBackgroundColor: function (value) {
+      if (value === true) {
+        return 'bg-green-1'
+      }
 
-            if(value === false) {
-              return 'negative'
-            }
+      if (value === false) {
+        return 'bg-red-2'
+      }
 
-            return 'default'
-          },
+      return 'bg-default'
+    },
 
-          getChecklistBackgroundColor: function(value)
-          {
-            if(value === true) {
-              return 'bg-green-1'
-            }
+    saveToLocalStorage: async function () {
+      // Choose a list of fields to save.
+      const fieldsToSave = {
+        startDate: this.startDate,
+        plantType: this.plantType,
+        make: this.make,
+        model: this.model,
+        siteLocation: this.siteLocation,
+        registration: this.registration,
 
-            if(value === false) {
-              return 'bg-red-2'
-            }
+        fluids: this.fluids,
+        visibility: this.visibility,
+        cabin: this.cabin,
+        wheels: this.wheels,
+        guards: this.guards,
+        warningDevices: this.warningDevices,
+        loadCart: this.loadCart,
+        brakes: this.brakes,
+        body: this.body,
+        controls: this.controls,
+        hydraulics: this.hydraulics,
+        engineExhaust: this.engineExhaust,
+        fireExtinguisher: this.fireExtinguisher,
+        other: this.other,
 
-            return 'bg-default'
-          },
+        tyres: this.tyres,
+        operation: this.operation,
+        jib: this.jib,
+        safetyChains: this.safetyChains,
+        shackleAndSwivel: this.shackleAndSwivel,
 
+        decals: this.decals,
+        rops: this.rops,
+        attachPoints1: this.attachPoints1,
 
+        tracks: this.tracks,
+        workingLoads: this.workingLoads,
+        attachPoints2: this.attachPoints2,
 
+        crewLeader1: this.crewLeader1
+        // etc...
+      }
 
-          saveToLocalStorage: async function()
-          {
-            // Choose a list of fields to save.
-            const fieldsToSave = {
-              startDate: this.startDate,
-              plantType: this.plantType,
-              make: this.make,
-              model: this.model,
-              siteLocation: this.siteLocation,
-              registration: this.registration,
+      // We need to convert the data to a JSON 'string' in order to save it into localStorage.
+      const fieldsToSaveAsString = JSON.stringify(fieldsToSave)
 
-              fluids: this.fluids,
-              visibility: this.visibility,
-              cabin: this.cabin,
-              wheels: this.wheels,
-              guards: this.guards,
-              warningDevices: this.warningDevices,
-              loadCart: this.loadCart,
-              brakes: this.brakes,
-              body: this.body,
-              controls: this.controls,
-              hydraulics: this.hydraulics,
-              engineExhaust: this.engineExhaust,
-              fireExtinguisher: this.fireExtinguisher,
-              other: this.other,
+      // Save it to local storage with key "savedForm".
+      await set('savedForm-PlantChecklist', fieldsToSaveAsString)
+    },
 
-              tyres: this.tyres,
-              operation: this.operation,
-              jib: this.jib,
-              safetyChains: this.safetyChains,
-              shackleAndSwivel: this.shackleAndSwivel,
+    loadFromLocalStorage: async function () {
+      // Load the form from Local Storage (this will be a string at the moment).
+      const savedFormAsString = await get('savedForm-PlantChecklist')
 
-              decals: this.decals,
-              rops: this.rops,
-              attachPoints1: this.attachPoints1,
+      // Parse that string into a JSON obect.
+      const savedFormAsObject = JSON.parse(savedFormAsString)
 
-              tracks: this.tracks,
-              workingLoads: this.workingLoads,
-              attachPoints2: this.attachPoints2,
+      // This is a bit of a shortcut because I'm lazy.
+      // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
+      // But you could just set each field manually.
+      // e.g.
+      // this.permitNumbers = savedFormAsObject.permitNumbers;
+      // etc
+      Object.assign(this, savedFormAsObject)
+    }
+  },
 
-              crewLeader1: this.crewLeader1,
-              // etc...
-            };
+  created () {
+    // Get a reference to the title element using a CSS selector.
+    const titleElement = document.querySelector('title')
 
-            // We need to convert the data to a JSON 'string' in order to save it into localStorage.
-            const fieldsToSaveAsString = JSON.stringify(fieldsToSave);
+    // Get the current date as an ISO string.
+    // TODO: You probably want to find a way to convert this to YYYY-MM-DD format.
+    const currentDate = new Date().toISOString()
 
-            // Save it to local storage with key "savedForm".
-            await set('savedForm-PlantChecklist', fieldsToSaveAsString);
-          },
-
-          loadFromLocalStorage: async function()
-          {
-            // Load the form from Local Storage (this will be a string at the moment).
-            const savedFormAsString = await get('savedForm-PlantChecklist');
-
-            // Parse that string into a JSON obect.
-            const savedFormAsObject = JSON.parse(savedFormAsString);
-
-            // This is a bit of a shortcut because I'm lazy.
-            // It will "merge" your items in the savedFormAsObject into your "data()" properties automatically.
-            // But you could just set each field manually.
-            // e.g.
-            // this.permitNumbers = savedFormAsObject.permitNumbers;
-            // etc
-            Object.assign(this, savedFormAsObject);
-          }
-        },
-
-        created() {
-          // Get a reference to the title element using a CSS selector.
-          const titleElement = document.querySelector('title');
-
-          // Get the current date as an ISO string.
-          // TODO: You probably want to find a way to convert this to YYYY-MM-DD format.
-          const currentDate = new Date().toISOString();
-
-          // Set the text content of the title element.
-          titleElement.innerText = `Plant Checklist - ${currentDate}`;
-        },
-  })
+    // Set the text content of the title element.
+    titleElement.innerText = `Plant Checklist - ${currentDate}`
+  }
+})
 </script>
 
 <style>
@@ -923,9 +912,8 @@ export default defineComponent({
 
     @media screen and (max-width: 1000px){
       body{
-        font-size: .5em;
+        font-size: 1em;
       }
-
 
       #container {
         width:900px;
@@ -933,7 +921,7 @@ export default defineComponent({
         margin: auto;
       }
 
-      .form-section {max-width: 100%; width: 900px;}
+      .form-section {max-width: 100%; width: 1000px;}
 
       h3{ font-size: 3em}
       .q-field {

@@ -1,3 +1,4 @@
+<!-- eslint-disable vue/require-v-for-key -->
 <template>
   <q-page class="flex flex-center">
     <div id="container">
@@ -205,7 +206,7 @@
             and meet Downer's drug and alcohol policy requirements.</cite>
           <div class="row">
             <div class="col">
-              <div v-for="(attendee, index) in attendees">
+              <div v-for="(attendee, index) in attendees" :key="attendee.id">
                 <q-input filled v-model="attendees[index]" label="Insert Name"></q-input>
 
               </div>
