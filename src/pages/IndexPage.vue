@@ -1,9 +1,9 @@
 <template>
   <q-page class="flex flex-center">
     <img
-      alt="Quasar logo"
-      src="~assets/quasar-logo-vertical.svg"
-      style="width: 200px; height: 200px"
+      alt="Downer Group"
+      src="https://www.downergroup.com/Content/img/logo-v3.svg"
+      style="width: 375px; max-width:100%;"
     >
   </q-page>
 </template>

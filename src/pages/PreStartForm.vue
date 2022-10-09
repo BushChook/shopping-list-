@@ -16,10 +16,10 @@
           </div>
 
           <div class="row">
-            <div class="col">
+            <div class="col-sm-12 col-md-6">
               <q-input filled v-model="jobNumber" label="Job Number"></q-input>
             </div>
-            <div class="col">
+            <div class="col-sm-12 col-md-6">
               <q-input filled v-model="trafficRiskAssessmentNumber" label="Traffic Risk Assessment Number"></q-input>
             </div>
           </div>
@@ -74,7 +74,7 @@
         <!-- Section 4 -->
         <h2>Section 4 - Specific Requirements</h2>
         <div class="form-section">
-          <div class="q-markup-table q-table__container q-table__card q-table--cell-separator q-table--flat q-table--bordered">
+          <div class="q-markup-table q-table__container q-table__card q-table--cell-separator q-table--flat q-table--bordered" style="overflow-x:auto">
             <table class="q-table">
               <thead>
                 <tr>
