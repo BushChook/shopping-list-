@@ -64,7 +64,7 @@
 
             <h4>2. Traffic Management Assessment</h4>
             <div class="row">
-              <div class="col-6 col-sm-12">>
+              <div class="col-6 col-sm-12">
                 Road Type
                 <q-btn-toggle
                 v-model="roadType"
@@ -101,7 +101,7 @@
             </div>
             <div class="row">
 
-              <div class="col-6 col-sm-12">>
+              <div class="col-6 col-sm-12">
                 Clearence between workers and traffic
                 <q-btn-toggle
                 v-model="clearenceBetweenWorkers"
@@ -119,7 +119,7 @@
 
 
 
-              <div class="col-6 col-sm-12">>
+              <div class="col-6 col-sm-12">
                 Task Duration
                 <q-btn-toggle
                 v-model="taskDuration"

@@ -352,8 +352,15 @@ export default defineComponent({
   // Anything within here will run when your page is first loaded.
   // Kind of like a setup function... do shit when page first loads.
   //
-  mounted () {
-
+    async mounted () {
+    try {
+      const response = await fetch('http://localhost:3000/cities')
+      console.log ("made it here")
+      console.log(await response.json())
+    } catch (err) {
+      console.log(err)
+      console.log("I am sex")
+    }
     // Your other initialization code that's already here...
 
     // Create an interval timer that triggers the saveToLocalsStorage function every 10 seconds.
